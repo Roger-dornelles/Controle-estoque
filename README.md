@@ -7,11 +7,11 @@ Projeto ira usar a API criada em NodeJs [Link API](https://github.com/Roger-dorn
 
 
 
-## Descrição
+## :pencil2: Descrição
 
 > Projeto criado para gerenciamento de estoque onde o usuario pode adicionar, excluir e atualizar os dados do produto.
 
-## Tecnologias
+## :hammer_and_wrench: Tecnologias
 
 . NextJs
 
@@ -26,5 +26,7 @@ Projeto ira usar a API criada em NodeJs [Link API](https://github.com/Roger-dorn
 . Prettier
 
 
+## 	:wrench: Instalação
 
+:arrow_right: no prompt de comando (CMD) fazer o clone do projeto executando o comando `git clone https://github.com/Roger-dornelles/projeto_node`
 
