@@ -1,11 +1,14 @@
 import Head from '@/components/Header';
 import Link from 'next/link';
-import { ReactElement } from 'react';
+import { ReactElement, useContext } from 'react';
 import { BsClipboardData, BsClipboardPlus, BsClipboardCheck, BsClipboardX, BsBoxArrowInLeft } from 'react-icons/bs';
 import { IconType } from 'react-icons/lib';
 import LogoSidebar from 'public/images/logo-sidebar.png';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { signOut } from 'next-auth/react';
+import { Context } from '@/context/SnackbarContext';
+import SnackBar from '../snackbar';
 
 type SidebarProps = {
   children: ReactElement;
@@ -26,7 +29,8 @@ const menuItens = [
 
 export const Sidebar = ({ children }: SidebarProps) => {
   const router = useRouter();
-  console.log(router.pathname);
+  const { snackBar }: any = useContext(Context);
+  console.log('CONTEXT ', snackBar);
 
   return (
     <main className={`flex text-[16px]`}>
@@ -45,9 +49,8 @@ export const Sidebar = ({ children }: SidebarProps) => {
                   return (
                     <li
                       key={index}
-                      className={` w-[100%] flex flex-row items-center p-[9px] pl-[1.5rem] hover:bg-[#EDEDED] ${
-                        item.path.includes(router.pathname) ? 'bg-[#EDEDED]' : null
-                      }`}
+                      className={` w-[100%] flex flex-row items-center p-[9px] pl-[1.5rem] hover:bg-[#EDEDED]
+                      ${item.path.includes(router.pathname) ? 'bg-[#EDEDED]' : null}`}
                     >
                       <Link href={item.path} legacyBehavior>
                         <a className="flex flex-row">
@@ -62,7 +65,15 @@ export const Sidebar = ({ children }: SidebarProps) => {
           </nav>
         </div>
         <div className="w-[100%] h-[3rem] flex items-center mb-[1.5rem] hover:bg-[#EDEDED]">
-          <button className={`flex flex-row w-[60px]  ml-[1.5rem] justify-center items-center `}>
+          <button
+            className={`flex flex-row w-[60px]  ml-[1.5rem] justify-center items-center `}
+            onClick={() => {
+              signOut();
+              setTimeout(() => {
+                router.push('/');
+              }, 3000);
+            }}
+          >
             <span className="text-[22px] pr-[6px]">
               <BsBoxArrowInLeft />
             </span>
