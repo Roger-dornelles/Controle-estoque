@@ -22,9 +22,9 @@ type ItemsProps = {
 
 const menuItens = [
   { label: 'Estoque', path: '/estoque', icon: BsClipboardData },
-  { label: 'Adicionar produto', path: '/adicionar', icon: BsClipboardPlus },
-  { label: 'Atualizar produto', path: '/atualizar', icon: BsClipboardCheck },
-  { label: 'Excluir produto', path: '/excluir', icon: BsClipboardX },
+  { label: 'Adicionar produto', path: '/addProduct', icon: BsClipboardPlus },
+  { label: 'Atualizar produto', path: '/updateProduct', icon: BsClipboardCheck },
+  { label: 'Excluir produto', path: '/deleteProduct', icon: BsClipboardX },
 ];
 
 export const Sidebar = ({ children }: SidebarProps) => {
