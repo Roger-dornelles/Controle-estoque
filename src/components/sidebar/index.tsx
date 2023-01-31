@@ -36,7 +36,7 @@ export const Sidebar = ({ children }: SidebarProps) => {
     <main className={`flex text-[16px]`}>
       <Head />
 
-      <aside className={`w-[220px] h-[100vh] flex flex-col justify-between bg-[#DAEAF1]`}>
+      <aside className={`w-[220px] h-[100vh] flex flex-col justify-between bg-[#c6dae2]`}>
         <div>
           <div className="flex flex-row justify-center items-center ml-[70px] w-[50px] h-[50px] mt-[2.5rem]">
             <Image src={LogoSidebar} alt="logo" className="rounded-[50%]" />
