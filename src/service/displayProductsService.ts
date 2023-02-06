@@ -6,7 +6,7 @@ export default async function displayProductsService(token: string) {
       url: '/products/all',
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${''}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -14,7 +14,7 @@ export default async function displayProductsService(token: string) {
       return {
         error: true,
         data: '',
-        message: 'Não há produto cadastrado.',
+        message: response?.response.data.error ? response?.response.data.error : 'Não há produto cadastrado.',
       };
     }
 
@@ -27,7 +27,7 @@ export default async function displayProductsService(token: string) {
     return {
       error: true,
       data: '',
-      message: 'Ocorreu um erro, tente mais tarde.',
+      message: error?.response?.data.error,
     };
   }
 }
