@@ -1,11 +1,12 @@
 import { optionsAuth } from './auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth';
 import { NextApiRequest, NextApiResponse } from 'next';
-import displayProductsService from '@/service/displayProductsService';
+import searchOneProductService from '@/service/searchOneProductService';
 
-export default async function displayProducts(req: NextApiRequest, res: NextApiResponse) {
+const searchOneProduct = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const session = await unstable_getServerSession(req, res, optionsAuth);
+
     if (!session) {
       return {
         redirect: {
@@ -14,11 +15,15 @@ export default async function displayProducts(req: NextApiRequest, res: NextApiR
         },
       };
     }
-    const response = await displayProductsService(session.user.user);
+    const { id, token } = req.body;
 
-    // console.log('Response api => ', response);
-    res.status(200).json(response);
+    if (id && token) {
+      const response = await searchOneProductService({ token, id });
+
+      return res.status(201).json(response);
+    }
   } catch (error) {
     return null;
   }
-}
+};
+export default searchOneProduct;

@@ -1,14 +1,8 @@
+import { SnackbarProps } from '@/types/snackBarTypes';
 import { createContext, ReactElement, useContext, useState } from 'react';
 
 type Props = {
   children: ReactElement;
-};
-
-type SnackbarProps = {
-  message: string;
-  type: string;
-  timer: number;
-  open: boolean;
 };
 
 const initialValue = {
@@ -17,7 +11,7 @@ const initialValue = {
   timer: 0,
   open: false,
 };
-export const Context = createContext({});
+export const Context = createContext<SnackbarProps>(initialValue);
 
 export const SnackbarProvider = ({ children }: Props) => {
   const [snackBar, setSnackBar] = useState<SnackbarProps>({

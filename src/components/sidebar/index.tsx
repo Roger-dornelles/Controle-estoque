@@ -30,7 +30,7 @@ const menuItens = [
 export const Sidebar = ({ children }: SidebarProps) => {
   const router = useRouter();
   const { snackBar }: any = useContext(Context);
-  console.log('CONTEXT ', snackBar);
+
 
   return (
     <main className={`flex text-[16px]`}>
