@@ -8,7 +8,8 @@ import { unstable_getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-import { BsArrowLeft } from 'react-icons/bs';
+import { BsArrowLeft, BsInfoCircle } from 'react-icons/bs';
+import Tooltip from '@mui/material/Tooltip';
 
 import { optionsAuth } from '../api/auth/[...nextauth]';
 
@@ -65,7 +66,14 @@ const productId = ({ user }: UserType) => {
         <BsArrowLeft className="mt-[5px] pr-[5px] text-[1rem]" />
         Voltar
       </Link>
-      <h3 className={`w-[85vw] flex justify-center pb-[15px] mb-[1rem] border-b-[1px] border-[#ccc]`}>Mais detalhes</h3>
+      <h3 className={`w-[85vw] flex justify-center pb-[15px] mb-[1rem] border-b-[1px] border-[#ccc]`}>
+        Mais detalhes
+        <Tooltip title={`Area para visualização das informações adicionais do produto.`} arrow placement="top">
+          <p>
+            <BsInfoCircle className={`text-[14px] mt-[5px] ml-[5px] hover:cursor-pointer`} />
+          </p>
+        </Tooltip>
+      </h3>
       {productId && (
         <>
           <div className={`w-[100%] max-w-[500px] flex flex-col p-[25px] mt-[50px] text-left shadow-2xl`}>
