@@ -14,7 +14,10 @@ import Tooltip from '@mui/material/Tooltip';
 import { optionsAuth } from '../api/auth/[...nextauth]';
 
 type UserType = {
-  user: string;
+  user: {
+    token: string;
+    id: number;
+  };
 };
 
 const productId = ({ user }: UserType) => {
@@ -32,7 +35,7 @@ const productId = ({ user }: UserType) => {
         method: 'POST',
         data: {
           id: id,
-          token: user,
+          token: user.token,
         },
       });
       if (response.data.error) {
@@ -124,7 +127,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }: any) 
 
     return {
       props: {
-        user: session.user.user,
+        user: session.user,
       },
     };
   } catch (error) {

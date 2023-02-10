@@ -29,8 +29,6 @@ const menuItens = [
 
 export const Sidebar = ({ children }: SidebarProps) => {
   const router = useRouter();
-  const { snackBar }: any = useContext(Context);
-
 
   return (
     <main className={`flex text-[16px]`}>

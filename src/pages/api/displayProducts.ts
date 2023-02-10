@@ -6,6 +6,7 @@ import displayProductsService from '@/service/displayProductsService';
 export default async function displayProducts(req: NextApiRequest, res: NextApiResponse) {
   try {
     const session = await unstable_getServerSession(req, res, optionsAuth);
+
     if (!session) {
       return {
         redirect: {
@@ -14,9 +15,8 @@ export default async function displayProducts(req: NextApiRequest, res: NextApiR
         },
       };
     }
-    const response = await displayProductsService(session.user.user);
+    const response = await displayProductsService(session.user.token);
 
-    // console.log('Response api => ', response);
     res.status(200).json(response);
   } catch (error) {
     return null;

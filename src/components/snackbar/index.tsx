@@ -32,7 +32,7 @@ export default function SnackBar({}) {
           classes={{
             root: `
                 ${snackBar.type === 'error' && 'bg-red-400'}
-                ${snackBar.type === 'sucess' && 'bg-green-400'}
+                ${snackBar.type === 'success' && 'bg-green-400'}
                 min-w-[350px] flex justify-center
               `,
           }}

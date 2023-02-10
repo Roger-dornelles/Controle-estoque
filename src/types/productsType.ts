@@ -8,3 +8,12 @@ export type ProductsTypes = {
   userId: number;
   userName: string;
 };
+
+
+export type ResponseType = {
+  data: {
+    error: boolean;
+    message: string;
+    data: string[] | string;
+  };
+};

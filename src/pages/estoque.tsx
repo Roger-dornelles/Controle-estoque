@@ -33,7 +33,6 @@ const estoque = () => {
             type: 'error',
           });
       } catch (error) {
-        console.log('ERROR ', error);
         setSnackBar({
           message: 'Ocorreu um erro, tente mais tarde.',
           timer: 3000,
