@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import { unstable_getServerSession } from 'next-auth';
 import { optionsAuth } from './api/auth/[...nextauth]';
 
-const updateProduct = () => {
+const updateProduct = (session: string) => {
   return (
     <>
       <h2>atualizar Produto</h2>

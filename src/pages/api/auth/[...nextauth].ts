@@ -14,9 +14,10 @@ export const optionsAuth = {
       authorize: async (credentials, req) => {
         if (credentials != null && credentials.email && credentials.password) {
           const user = await getUser(credentials.email, credentials.password);
+
           if (user != null) {
             return {
-              user: user.data.token,
+              user,
             };
           }
         }
@@ -32,8 +33,13 @@ export const optionsAuth = {
       return token;
     },
     session: async ({ session, token }: any) => {
+      let user = {
+        token: token.user.user.user.token,
+        id: token.user.user.id,
+      };
+
       if (token) {
-        session.user = token.user;
+        session.user = user;
       }
       return session;
     },

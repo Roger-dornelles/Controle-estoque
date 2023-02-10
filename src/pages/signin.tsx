@@ -40,7 +40,7 @@ const signin = () => {
         if (request && request.ok) {
           setSnackBar({
             message: 'Usuario logado com sucesso. ',
-            type: 'sucess',
+            type: 'success',
             timer: 3000,
             open: true,
           });

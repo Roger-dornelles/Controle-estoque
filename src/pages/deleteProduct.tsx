@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import { unstable_getServerSession } from 'next-auth';
 import { optionsAuth } from './api/auth/[...nextauth]';
 
-const deleteProduct = () => {
+const deleteProduct = (session: string) => {
   return (
     <>
       <h2>Excluir Produto</h2>

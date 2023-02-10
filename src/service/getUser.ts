@@ -1,6 +1,7 @@
 import axiosClient from '@/config/axios';
+import { jwtDecoded } from './../helpers/Jwt';
 
-const getUser = async (email: any, password: any) => {
+const getUser = async (email: string, password: string) => {
   try {
     const user = await axiosClient({
       url: '/login',
@@ -11,8 +12,13 @@ const getUser = async (email: any, password: any) => {
       },
     });
 
+    let decoded = await jwtDecoded(user.data.token);
+    let users = {
+      user: user.data,
+      id: decoded?.id,
+    };
     if (user) {
-      return user;
+      return users;
     } else {
       return null;
     }
