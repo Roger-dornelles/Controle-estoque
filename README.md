@@ -19,6 +19,8 @@ Projeto ira usar a API criada em NodeJs [Link API](https://github.com/Roger-dorn
 
 . Next-Auth
 
+. JsonWebToken 
+
 . TailwindCss
 
 . React-icons
