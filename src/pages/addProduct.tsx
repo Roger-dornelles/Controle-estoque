@@ -49,11 +49,24 @@ const addProduct = () => {
 
           if (!response.data.error) {
             setSnackBar({
-              message: 'Produto cadastrado com sucesso.',
+              message: response.data.message,
               timer: 3000,
               open: true,
               type: 'success',
             });
+
+            setProductName('');
+            setProductDescription('');
+            setQuantityProduct('');
+
+            setTimeout(() => {
+              setSnackBar({
+                message: '',
+                timer: 0,
+                open: false,
+                type: '',
+              });
+            }, 3050);
           }
         }
       }

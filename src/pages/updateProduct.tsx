@@ -8,23 +8,7 @@ import { BsCartDash, BsCartPlus, BsArrowDownShort, BsPencil, BsXLg } from 'react
 import { Context } from '@/context/SnackbarContext';
 import SnackBar from '@/components/snackbar';
 import { SnackbarProps } from '@/types/snackBarTypes';
-
-type ProductsType = {
-  products: {
-    id: number;
-    userId: number;
-    userName: string;
-    name: string;
-    description: string;
-    input: number;
-    output: number;
-    total: number;
-  };
-};
-
-type ProductArrayType = {
-  product: ProductsType;
-};
+import { ProductArrayType } from '@/types/productsType';
 
 const updateProduct = ({ product }: ProductArrayType) => {
   const { setSnackBar }: SnackbarProps | any = useContext(Context);
@@ -356,28 +340,39 @@ const updateProduct = ({ product }: ProductArrayType) => {
 export default updateProduct;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }: any) => {
-  const session = await unstable_getServerSession(req, res, optionsAuth);
-  if (!session) {
+  try {
+    const session = await unstable_getServerSession(req, res, optionsAuth);
+    if (!session) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+
+    let product = await axios({
+      url: `${process.env.NEXT_PUBLIC_URL}/products/all`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${session.user.token}`,
+      },
+    });
+
     return {
-      redirect: {
-        destination: '/',
-        permanent: false,
+      props: {
+        session,
+        product: product.data,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
       },
     };
   }
-
-  let product = await axios({
-    url: `${process.env.NEXT_PUBLIC_URL}/products/all`,
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${session.user.token}`,
-    },
-  });
-
-  return {
-    props: {
-      session,
-      product: product.data,
-    },
-  };
 };

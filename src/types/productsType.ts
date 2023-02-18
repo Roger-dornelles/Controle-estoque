@@ -26,3 +26,24 @@ export type UpdateProductByIdType = {
   output?: number;
   input?: number;
 };
+
+type ProductType = {
+  map(arg0: (item: ProductsTypes) => JSX.Element): import('react').ReactNode;
+  products: {
+    map: any;
+    id: number;
+    userId: number;
+    userName: string;
+    name: string;
+    description: string;
+    input: number;
+    output: number;
+    total: number;
+  };
+};
+
+export type ProductArrayType = {
+  map?: any;
+  product: ProductType;
+  session?: string;
+};
