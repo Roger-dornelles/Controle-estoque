@@ -9,6 +9,7 @@ import { SnackbarProps } from '@/types/snackBarTypes';
 import SnackBar from '@/components/snackbar';
 
 import Link from 'next/link';
+import { SessionType } from '@/types/sessionType';
 
 const estoque = () => {
   const [productsAll, setProductsAll] = useState<ProductsTypes>();
@@ -80,7 +81,7 @@ const estoque = () => {
 export default estoque;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }: any) => {
-  const session = await unstable_getServerSession(req, res, optionsAuth);
+  const session: SessionType | null = await unstable_getServerSession(req, res, optionsAuth);
   if (!session) {
     return {
       redirect: {
