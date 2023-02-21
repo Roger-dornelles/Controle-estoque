@@ -7,6 +7,7 @@ import { optionsAuth } from './api/auth/[...nextauth]';
 import { BsTrash, BsX, BsCheck } from 'react-icons/bs';
 import { Context } from '@/context/SnackbarContext';
 import SnackBar from '@/components/snackbar';
+import { SessionType } from '@/types/sessionType';
 
 const deleteProduct = ({ product, session }: ProductArrayType) => {
   const { setSnackBar }: any = useContext(Context);
@@ -129,7 +130,7 @@ const deleteProduct = ({ product, session }: ProductArrayType) => {
 export default deleteProduct;
 export const getServerSideProps: GetServerSideProps = async ({ req, res }: any) => {
   try {
-    const session = await unstable_getServerSession(req, res, optionsAuth);
+    const session: SessionType | null = await unstable_getServerSession(req, res, optionsAuth);
 
     if (!session) {
       return {

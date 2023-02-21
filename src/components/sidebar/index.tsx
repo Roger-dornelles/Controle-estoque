@@ -1,14 +1,12 @@
 import Head from '@/components/Header';
 import Link from 'next/link';
-import { ReactElement, useContext } from 'react';
-import { BsClipboardData, BsClipboardPlus, BsClipboardCheck, BsClipboardX, BsBoxArrowInLeft } from 'react-icons/bs';
+import { ReactElement, useContext, useState } from 'react';
+import { BsClipboardData, BsClipboardPlus, BsClipboardCheck, BsClipboardX, BsBoxArrowInLeft, BsPerson } from 'react-icons/bs';
 import { IconType } from 'react-icons/lib';
 import LogoSidebar from 'public/images/logo-sidebar.png';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
-import { Context } from '@/context/SnackbarContext';
-import SnackBar from '../snackbar';
 
 type SidebarProps = {
   children: ReactElement;
@@ -29,6 +27,7 @@ const menuItens = [
 
 export const Sidebar = ({ children }: SidebarProps) => {
   const router = useRouter();
+  const [profile, setprofile] = useState({ label: 'Perfil', path: '/profile', icon: BsPerson });
 
   return (
     <main className={`flex text-[16px]`}>
@@ -62,22 +61,37 @@ export const Sidebar = ({ children }: SidebarProps) => {
             </ul>
           </nav>
         </div>
-        <div className="w-[100%] h-[3rem] flex items-center mb-[1.5rem] hover:bg-[#EDEDED]">
-          <button
-            className={`flex flex-row w-[60px]  ml-[1.5rem] justify-center items-center `}
-            onClick={() => {
-              signOut();
-              setTimeout(() => {
-                router.push('/');
-              }, 3000);
-            }}
+
+        <footer className={`flex flex-col`}>
+          <div
+            className={`w-[100%] h-[2.7rem] flex flex-row items-center ${
+              profile.path.includes(router.pathname) && 'bg-[#EDEDED]'
+            } hover:bg-[#EDEDED]`}
           >
-            <span className="text-[22px] pr-[6px]">
-              <BsBoxArrowInLeft />
-            </span>
-            Sair
-          </button>
-        </div>
+            {profile && (
+              <Link href={profile.path} className={`flex flex-row w-[60px] ml-[1.5rem] justify-center items-center `}>
+                <span className="text-black text-[20px] pr-[6px]">{<profile.icon />}</span>
+                {profile.label}
+              </Link>
+            )}
+          </div>
+          <div className="w-[100%] h-[2.7rem] flex  items-center mb-[1.5rem] hover:bg-[#EDEDED]">
+            <button
+              className={`flex flex-row w-[60px] ml-[1.5rem] justify-center items-center `}
+              onClick={() => {
+                signOut();
+                setTimeout(() => {
+                  router.push('/');
+                }, 3000);
+              }}
+            >
+              <span className="text-[22px] pr-[6px]">
+                <BsBoxArrowInLeft />
+              </span>
+              Sair
+            </button>
+          </div>
+        </footer>
       </aside>
       <section className={`bg-[#EEEEEE] w-[100%]`}>{children}</section>
     </main>
