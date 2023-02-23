@@ -72,7 +72,7 @@ const signin = () => {
       <Header />
       <SnackBar />
       <section className={`w-[100%] h-[100vh] flex  items-center flex-col bg-[#F6F6F6] text-[#686868]`}>
-        <Link href={'/'} className={`absolute left-[50px] top-[20px] flex flex-row text-[#f86363]`}>
+        <Link href={'/'} data-cy="link" className={`absolute left-[50px] top-[20px] flex flex-row text-[#f86363]`}>
           <span className="mt-[5px] pr-[5px]">
             <BsArrowLeft />
           </span>

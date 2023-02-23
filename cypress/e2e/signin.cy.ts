@@ -9,6 +9,7 @@ describe('login', () => {
   it('should return page elements login', () => {
     cy.title().should('contain', 'Gerenciador de Estoque');
     cy.get('section h2').should('contain', 'Sistema de gerenciamento');
+    cy.get('[data-cy="link"]').as('links');
     cy.get('section form div').should('contain', 'Email');
     cy.get('section form div').should('contain', 'Senha');
     cy.get('input[name="email"]').should('exist');
