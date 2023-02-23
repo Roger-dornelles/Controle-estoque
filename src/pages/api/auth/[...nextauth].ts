@@ -8,8 +8,8 @@ export const optionsAuth = {
     CredentialsProvider({
       id: 'credentials',
       credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Senha', type: 'password' },
+        email: { label: 'Email', type: 'email', name: 'email' },
+        password: { label: 'Senha', type: 'password', name: 'password' },
       },
       authorize: async (credentials, req) => {
         if (credentials != null && credentials.email && credentials.password) {

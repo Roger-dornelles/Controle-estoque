@@ -96,6 +96,7 @@ const signin = () => {
             <input
               type="email"
               value={email}
+              name="email"
               onChange={(e) => setEmail(e.target.value)}
               className={`w-[90%] h-[35px] rounded-[5px] border-0 outline-none pl-[8px] `}
             />
@@ -104,6 +105,7 @@ const signin = () => {
             <label className={`w-[90%] h-[35px] ml-[15px] text-[18px]`}>Senha</label>
             <input
               type="password"
+              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className={`w-[90%] h-[35px] rounded-[5px] border-0 outline-0 pl-[8px] `}
