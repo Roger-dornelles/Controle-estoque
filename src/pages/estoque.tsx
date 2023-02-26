@@ -49,7 +49,7 @@ const estoque = () => {
     <section className="flex justify-center ml-[20px] mt-[50px] w-[calc(100%-220px)]">
       <SnackBar />
       <div className="w-[80%] flex flex-col justify-center ml-[40px]">
-        <div className={`w-[80%] flex justify-between  border-b-[1px] border-[#ccc] pb-[1.5rem]`}>
+        <div data-cy="title" className={`w-[80%] flex justify-between  border-b-[1px] border-[#ccc] pb-[1.5rem]`}>
           <p>Item</p>
           <p>Descrição</p>
           <p>Quantidade</p>
@@ -66,6 +66,7 @@ const estoque = () => {
                   </div>
                   <Link
                     href={`./product/${item.id}`}
+                    data-cy="linkID"
                     className="w-[100px] h-[25px] mt-[10px] ml-[12px] text-[12px] flex justify-center items-center text-gray-500 border-[1px] rounded-sm border-gray-400 hover:text-gray-700 hover:border-gray-500"
                   >
                     Mais detalhes
