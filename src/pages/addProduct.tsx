@@ -19,7 +19,7 @@ const addProduct = () => {
   const handleConfirmAddProduct = async (e: { preventDefault: any }) => {
     e.preventDefault();
     try {
-      if (productName && productDescription && quantityProduct) {
+      if (productName !== '' && productDescription !== '' && quantityProduct) {
         let isValid!: boolean;
         if (quantityProduct) {
           const regex = new RegExp('^[0-9]+$');
@@ -69,6 +69,13 @@ const addProduct = () => {
             }, 3050);
           }
         }
+      } else {
+        setSnackBar({
+          message: 'Preencha todos campos.',
+          timer: 3000,
+          open: true,
+          type: 'error',
+        });
       }
     } catch (error) {
       setSnackBar({
@@ -95,6 +102,7 @@ const addProduct = () => {
         <label className="pb-[1rem]">Produto:</label>
         <input
           type="text"
+          data-cy="name"
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
           className={`h-[2rem] mb-[2rem] rounded-[3px] outline-none pl-[8px]
@@ -105,6 +113,7 @@ const addProduct = () => {
         <label className="pb-[1rem]">Descrição:</label>
         <input
           type="text"
+          data-cy="description"
           value={productDescription}
           onChange={(e) => setProductDescription(e.target.value)}
           className={`h-[2rem] rounded-[3px] outline-none pl-[8px] mb-[2rem]
@@ -115,6 +124,7 @@ const addProduct = () => {
         <label className="pb-[1rem]">Quantidade de entrada:</label>
         <input
           type="text"
+          data-cy="quantity"
           value={quantityProduct}
           onChange={(e) => setQuantityProduct(e.target.value)}
           className={`h-[2rem] mb-[2rem] rounded-[3px] outline-none pl-[8px]
