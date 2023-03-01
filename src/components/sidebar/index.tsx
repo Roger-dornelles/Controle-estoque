@@ -45,6 +45,7 @@ export const Sidebar = ({ children }: SidebarProps) => {
                 menuItens.map((item: ItemsProps, index: number): JSX.Element => {
                   return (
                     <li
+                      data-cy={`${item.label}`}
                       key={index}
                       className={` w-[100%] flex flex-row items-center p-[9px] pl-[1.5rem] hover:bg-[#EDEDED]
                       ${item.path.includes(router.pathname) ? 'bg-[#EDEDED]' : null}`}
