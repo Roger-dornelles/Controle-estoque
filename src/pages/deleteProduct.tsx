@@ -64,7 +64,7 @@ const deleteProduct = ({ product, session }: ProductArrayType) => {
       <SnackBar />
       <h2>Excluir Produto</h2>
 
-      <div className={`w-[80%] flex justify-between mt-[50px]`}>
+      <div className={`w-[80%] flex justify-between mt-[50px]`} data-test="title-description">
         <p>Produto:</p>
         <p>Descrição:</p>
         <p>Total em estoque:</p>
@@ -74,6 +74,7 @@ const deleteProduct = ({ product, session }: ProductArrayType) => {
           return (
             <ul key={item.id} className={`w-[80%] flex relative`}>
               <li
+                data-cy={item.name}
                 className={`w-[100%] border-b-[1px] border-[#ccc] ${
                   confirmDelete && item.id === productID
                     ? 'duration-[1.3s] bg-[#ffe8e8]'
@@ -87,6 +88,7 @@ const deleteProduct = ({ product, session }: ProductArrayType) => {
 
                   <button
                     className={`h-auto absolute right-[-30px] mt-[10px] text-red-300 hover:text-red-500`}
+                    data-cy="trash"
                     onClick={() => {
                       setConfirmDelete(!confirmDelete);
                       setProductID(item.id);
@@ -114,6 +116,7 @@ const deleteProduct = ({ product, session }: ProductArrayType) => {
                     <button
                       className={`h-auto absolute right-[-120px] mt-[10px] text-[21px] text-green-300 hover:text-green-500 hover:bg-[#c5fdd1] rounded-sm`}
                       onClick={() => handleConfirmDeleteProductID(item.id)}
+                      data-test={'delete'}
                     >
                       <BsCheck />
                     </button>
