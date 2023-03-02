@@ -3,7 +3,7 @@ import axios from 'axios';
 import { GetServerSideProps, NextApiRequest, NextApiResponse } from 'next';
 import { unstable_getServerSession } from 'next-auth';
 import { optionsAuth } from './api/auth/[...nextauth]';
-import { BsPencil, BsCheck } from 'react-icons/bs';
+import { BsPencil, BsCheck, BsX } from 'react-icons/bs';
 import { useContext, useState } from 'react';
 import Link from 'next/link';
 import { Tooltip } from '@mui/material';
@@ -99,13 +99,21 @@ const profile = ({ user }: UserType) => {
                 type="text"
                 className={`${
                   !editUser.disableName
-                    ? 'w-[70%] outline-none ml-[8px] pl-[5px] bg-[#ffffff] rounded-sm h-[30px]'
+                    ? 'w-[70%] pr-[15px] outline-none ml-[8px] pl-[5px] bg-[#ffffff] rounded-sm h-[30px]'
                     : 'w-[70%] ml-[8px] pl-[5px] h-[30px] text-[#919090]'
                 }`}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 disabled={editUser.disableName}
               />
+              {!editUser.disableName && (
+                <BsX
+                  className={`absolute right-[73px] text-[19px] text-red-600 cursor-pointer ${name.length < 1 && 'hidden'}`}
+                  onClick={() => {
+                    name.length >= 1 && setName('');
+                  }}
+                />
+              )}
               <Tooltip title={`editar nome`} arrow placement="top">
                 <span>
                   <BsPencil
@@ -128,7 +136,7 @@ const profile = ({ user }: UserType) => {
                 type="text"
                 className={`${
                   !editUser.disableEmail
-                    ? 'w-[70%] outline-none ml-[8px] pl-[5px] bg-[#ffffff] rounded-sm h-[30px]'
+                    ? 'w-[70%] pr-[15px] outline-none ml-[8px] pl-[5px] bg-[#ffffff] rounded-sm h-[30px]'
                     : 'w-[70%] ml-[8px] pl-[5px] h-[30px] text-[#919090]'
                 }`}
                 value={email}
@@ -137,6 +145,14 @@ const profile = ({ user }: UserType) => {
                 }}
                 disabled={editUser.disableEmail}
               />
+              {!editUser.disableEmail && (
+                <BsX
+                  className={`absolute right-[78px] text-[19px] text-red-600 cursor-pointer ${email.length < 1 && 'hidden'}`}
+                  onClick={() => {
+                    email.length >= 1 && setEmail('');
+                  }}
+                />
+              )}
               <Tooltip title={`editar email`} arrow placement="top">
                 <span>
                   <BsPencil
