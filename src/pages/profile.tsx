@@ -38,11 +38,19 @@ const profile = ({ user }: UserType) => {
   const handleSaveUser = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      password !== confirmPassword
+      let isNotValidPassword = password !== confirmPassword;
+      isNotValidPassword
         ? setWarning({ error: true, message: 'Senhas são diferentes' })
         : setWarning({ error: false, message: '' });
 
-      if (name !== user.name || email !== user.email || password) {
+      if (!name || !email) {
+        setSnackBar({
+          message: 'Preencha os campos Nome e/ou Email',
+          timer: 3000,
+          open: true,
+          type: 'error',
+        });
+      } else {
         let response = await axios({
           url: './api/updateUserData',
           method: 'POST',
@@ -96,7 +104,7 @@ const profile = ({ user }: UserType) => {
             <label className={`flex flex-row items-center mb-[15px] h-[40px]`}>
               Nome:
               <input
-              data-cy='name'
+                data-cy="name"
                 type="text"
                 className={`${
                   !editUser.disableName
@@ -109,7 +117,8 @@ const profile = ({ user }: UserType) => {
               />
               {!editUser.disableName && (
                 <BsX
-                  className={`absolute right-[73px] text-[19px] text-red-600 cursor-pointer ${name.length < 1 && 'hidden'}`}
+                  data-cy="clear-name"
+                  className={`absolute right-[4.5rem] text-[19px] text-red-600 cursor-pointer ${name.length < 1 && 'hidden'}`}
                   onClick={() => {
                     name.length >= 1 && setName('');
                   }}
@@ -118,7 +127,7 @@ const profile = ({ user }: UserType) => {
               <Tooltip title={`editar nome`} arrow placement="top">
                 <span>
                   <BsPencil
-                data-test="open-name"
+                    data-test="open-name"
                     className={`ml-[7px] cursor-pointer`}
                     onClick={() => {
                       setEditUser({

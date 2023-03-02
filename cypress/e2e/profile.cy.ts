@@ -24,7 +24,26 @@ describe('profile', () => {
     cy.url().should('exist');
     cy.get('section form [data-test="open-name"]').should('exist');
     cy.get('section form [data-test="open-name"]').click();
-    cy.get('section form [data-cy="name"]').type(' Cypresssss');
+    cy.get('section form label [data-cy="clear-name"]').should('exist');
+
+    cy.wrap('section form [data-cy="name"]').then(($value) => {
+      console.log($value);
+    });
+    cy.get('section form label [data-cy="clear-name"]').click();
+
+    cy.get('section form [data-cy="name"]')
+
+      .then(($value) => {
+        return $value[0];
+      })
+      .then(($el) => {
+        let initialValue = $el[0]._wrapperState.initialValue;
+        let newName = 'Teste';
+        if (initialValue === newName) {
+          cy.get('section form [data-cy="name"]').type('Cypress');
+        }
+        cy.get('section form [data-cy="name"]').type(newName);
+      });
     cy.get('section form div > button').click();
     cy.contains('Dados atualizados...');
   });
