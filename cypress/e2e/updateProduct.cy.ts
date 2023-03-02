@@ -48,7 +48,7 @@ describe('update product', () => {
     cy.contains('Produto atualizado');
   });
 
-  it.only('should return confirmation description altered product', () => {
+  it('should return confirmation description altered product', () => {
     cy.get('section [data-test="product-list"]').contains(name);
     cy.get(`[data-test="product-list"] [data-cy="${name}"]`).should('exist');
     cy.get(`[data-test="product-list"] [data-test="${name}"]`).should('exist');
