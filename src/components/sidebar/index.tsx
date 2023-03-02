@@ -65,6 +65,7 @@ export const Sidebar = ({ children }: SidebarProps) => {
 
         <footer className={`flex flex-col`}>
           <div
+          data-cy="profile"
             className={`w-[100%] h-[2.7rem] flex flex-row items-center ${
               profile.path.includes(router.pathname) && 'bg-[#EDEDED]'
             } hover:bg-[#EDEDED]`}

@@ -96,6 +96,7 @@ const profile = ({ user }: UserType) => {
             <label className={`flex flex-row items-center mb-[15px] h-[40px]`}>
               Nome:
               <input
+              data-cy='name'
                 type="text"
                 className={`${
                   !editUser.disableName
@@ -109,6 +110,7 @@ const profile = ({ user }: UserType) => {
               <Tooltip title={`editar nome`} arrow placement="top">
                 <span>
                   <BsPencil
+                data-test="open-name"
                     className={`ml-[7px] cursor-pointer`}
                     onClick={() => {
                       setEditUser({
