@@ -132,6 +132,7 @@ const updateProduct = ({ product }: ProductArrayType) => {
       <SnackBar />
 
       <div
+        data-cy="title"
         className={`flex justify-between items-end w-[75%] ml-[100px] mb-[15px] pb-[12px] text-[15px] border-b-[1px] border-[#ccc]`}
       >
         <p>Produto:</p>
@@ -148,13 +149,18 @@ const updateProduct = ({ product }: ProductArrayType) => {
       {product &&
         (products as unknown as ProductsTypes).map((item: ProductsTypes) => {
           return (
-            <div key={item.id} className={`flex justify-between py-2 w-[60%] ml-[100px] border-b-[1px] border-[#ccc] relative`}>
+            <div
+              key={item.id}
+              data-test="product-list"
+              className={`flex justify-between py-2 w-[60%] ml-[100px] border-b-[1px] border-[#ccc] relative`}
+            >
               <span className="w-[44%] text-left ">{item.name}</span>
 
               <span className="w-[45%] text-left">{item.description}</span>
 
               <span className="w-[11%] text-right">{item.total}</span>
               <button
+                data-test={item.name}
                 name="saida"
                 onClick={() => {
                   handleEditOutput(item);
@@ -164,6 +170,7 @@ const updateProduct = ({ product }: ProductArrayType) => {
                 Remover
               </button>
               <button
+                data-cy={item.name}
                 name="entrada"
                 onClick={() => handleEditInput(item)}
                 className="flex flex-col text-[12px] px-1 absolute right-[-180px] border-[1px] border-[#ccc] rounded-sm hover:bg-[#cafcce] "
@@ -201,7 +208,7 @@ const updateProduct = ({ product }: ProductArrayType) => {
               {warning.message}
             </p>
           )}
-          <form onSubmit={handleUpdateProductForm} className={`w-[70%] flex flex-col`}>
+          <form onSubmit={handleUpdateProductForm} className={`w-[70%] flex flex-col`} data-cy="form">
             <div className={`text-[#a8a8a8] pb-[10px]`}>
               <p className="pb-[5px]">Produto:</p>
               <div className={`flex flex-row`}>
@@ -219,7 +226,7 @@ const updateProduct = ({ product }: ProductArrayType) => {
                 />
               </div>
             </div>
-            <div className={`text-[#a8a8a8] pb-[10px]`}>
+            <div className={`text-[#a8a8a8] pb-[10px]`} data-test="description">
               <p className="pb-[5px]">Descrição:</p>
               <div className={`flex flex-row`}>
                 <input
@@ -235,6 +242,7 @@ const updateProduct = ({ product }: ProductArrayType) => {
                   disabled={isDisabled.type === 'description' ? isDisabled.disabled : true}
                 />
                 <BsPencil
+                  data-cy="open-description"
                   onClick={(e) => setIsDisabled({ disabled: !isDisabled.disabled, type: 'description' })}
                   className={`text-black ml-[8px] mt-[3px] cursor-pointer absolute right-[65px]`}
                 />
