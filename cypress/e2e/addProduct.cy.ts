@@ -10,13 +10,13 @@ describe('addProduct', () => {
     const email = 'teste@teste.com';
     const password = '12345678';
     cy.login(email, password);
-    loc.MENU.NAVIGATION_MENU('Adicionar produto')
+    loc.MENU.NAVIGATION_MENU('Adicionar produto');
   });
 
-  afterEach(() => {
-    loc.MENU.NAVIGATION_MENU('Excluir produto');
-    loc.DELETE_PRODUCT(name);
-  });
+  // afterEach(() => {
+  //   loc.MENU.NAVIGATION_MENU('Excluir produto');
+  //   loc.DELETE_PRODUCT(name);
+  // });
 
   it('should navigate to page addProduct', () => {
     cy.get('aside ul > li').should('contain', 'Adicionar produto');
@@ -48,6 +48,8 @@ describe('addProduct', () => {
     cy.get('[data-cy="quantity"]').type('A23');
     cy.get('button:contains("Cadastrar")').click();
     cy.contains('deve conter somente numeros');
+    loc.MENU.NAVIGATION_MENU('Excluir produto');
+    loc.DELETE_PRODUCT(name);
   });
 });
 export {};
