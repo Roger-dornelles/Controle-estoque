@@ -10,9 +10,10 @@ describe('addProduct', () => {
     const email = 'teste@teste.com';
     const password = '12345678';
     cy.login(email, password);
+    loc.MENU.NAVIGATION_MENU('Adicionar produto')
   });
 
-  after(() => {
+  afterEach(() => {
     loc.MENU.NAVIGATION_MENU('Excluir produto');
     loc.DELETE_PRODUCT(name);
   });
@@ -30,7 +31,7 @@ describe('addProduct', () => {
   });
 
   it('should return product', () => {
-    loc.MENU.NAVIGATION_MENU('Adicionar produto');
+    // loc.MENU.NAVIGATION_MENU('Adicionar produto');
     cy.get('section').contains('Cadastrar');
     cy.get('section').find('input').should('exist');
     cy.get('[data-cy="name"]').type(name);
