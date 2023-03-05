@@ -7,14 +7,14 @@
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": " @typescript-eslint/parser"
+    "sourceType": "module"
+    // "project": " @typescript-eslint/parser"
   },
   "plugins": [
     "react",
     "react-hooks",
     "@typescript-eslint",
-    "@typescript-eslint/parser",
+    // "@typescript-eslint/parser",
     // "@typescript-eslint/eslint-plugin-parser",
     "prettier"
   ],
