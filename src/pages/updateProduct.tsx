@@ -299,8 +299,7 @@ const updateProduct = ({ product }: ProductArrayType) => {
                     value={output}
                     disabled={isDisabledInputs.type === 'output' ? isDisabledInputs.disabled : true}
                     onChange={(e) => {
-                      !validateRegex(e.target.value) &&
-                        setIsErrorOutput({ error: true, message: 'Saida tem que ser um numero' });
+                      !validateRegex(e.target.value) && setIsErrorOutput({ error: true, message: 'Saida tem que ser um numero' });
                       setOutput(e.target.value);
 
                       validateRegex(e.target.value) && setIsErrorOutput({ error: false, message: '' });

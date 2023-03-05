@@ -15,7 +15,7 @@
     "react-hooks",
     "@typescript-eslint",
     "@typescript-eslint/parser",
-    "@typescript-eslint/eslint-plugin-parser",
+    // "@typescript-eslint/eslint-plugin-parser",
     "prettier"
   ],
   "rules": {}
