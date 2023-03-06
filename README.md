@@ -41,3 +41,7 @@ Projeto ira usar a API criada em NodeJs [Link API](https://github.com/Roger-dorn
 :arrow_right: Após instalar as dependencias do projeto no prompt de comando ou terminal executar o comando :point_right: `npm run dev` para rodar o projeto em sua maquina,
 Para rodar os testes e2e executar o comando :point_right: `npm run cy:run`
 
+
+### Usuario Teste
+Email: teste@teste.com
+Password: 12345678
