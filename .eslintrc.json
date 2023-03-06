@@ -11,13 +11,6 @@
 
     "project": ["./tsconfig.json"]
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "typescript-eslint",
-    "typescript-eslint/parser",
-    "typescript-eslint/eslint-plugin-parser",
-    "prettier"
-  ],
+  "plugins": ["react", "typescript-eslint", "typescript-eslint/parser", "typescript-eslint/eslint-plugin-parser", "prettier"],
   "rules": {}
 }
